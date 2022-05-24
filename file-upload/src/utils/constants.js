@@ -4,8 +4,12 @@ module.exports.CONST = {
         Agent: 'Agent',
         User: 'User',
         UserAccount: 'UserAccount',
-        Category: 'Category',
-        PolicyCarrier: 'Policy Carrier',
-        PolicyInfo: 'PolicyInfo'
+        PolicyCategory: 'PolicyCategory',
+        PolicyCarrier: 'PolicyCarrier',
+        Policy: 'Policy'
     },
+    cacheKeys: {
+        Company: 'Company',
+        Category: 'Category'
+    }
 }

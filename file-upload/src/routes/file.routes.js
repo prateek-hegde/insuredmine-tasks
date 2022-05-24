@@ -1,8 +1,9 @@
-const router = require('express').Router()
-const { processFile } = require('../business_logic/file_processor')
+const router = require('express').Router();
+const upload = require("express-fileupload");
+const { saveUserData } = require('../business_logic/save')
 
 
 
-router.post('/', processFile)
+router.post('/', upload(), saveUserData);
 
 module.exports = router
