@@ -21,7 +21,7 @@ const processFile = async (csvData) => {
     // await Promise.all(promises);
 
     return new Promise((resolve, reject) => {
-        const worker = new Worker(`./file_processor.js`, {
+        const worker = new Worker(`${__dirname}/file_processor.js`, {
             workerData: { json: json },
         })
 
@@ -51,10 +51,8 @@ const convertJsonToCsv = async (csvData) => {
 
 const saveUserData = async (req, res) => {
     res.once('finish', async () => {
-        console.time('start')
         await processFile(req.files.csvfile.data.toString('utf8'))
         logger.info('completed')
-        console.timeEnd('start')
     })
 
     return res.status(202).send('In Progress')

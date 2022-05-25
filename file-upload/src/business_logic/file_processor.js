@@ -8,8 +8,8 @@ const {
     PolicyCategory,
     PolicyCarrier,
     Policy,
-} = require('./src/models')
-const { ErrorCodes, logger, getCache, setCache, CONST } = require('./src/utils')
+} = require('../models')
+const { ErrorCodes, logger, getCache, setCache, CONST } = require('../utils')
 
 async function getCategoryId(categoryName) {
     let categories = await getCache(CONST.cacheKeys.Category)
@@ -19,10 +19,6 @@ async function getCategoryId(categoryName) {
     }
 
     const category = categories.find((ele) => ele.categoryName === categoryName)
-    if (!category) {
-        console.log('categoryName not found', categoryName)
-        return ''
-    }
 
     return category._id
 }
@@ -36,10 +32,6 @@ async function getCompanyId(companyName) {
 
     const company = companies.find((ele) => ele.companyName === companyName)
 
-    if (!company) {
-        console.log('company not found', companyName)
-        return ''
-    }
     return company._id
 }
 
@@ -115,10 +107,10 @@ async function processFile() {
 
     await Promise.all(carriers)
 
-    const chunkSize = 25;
-      for (let i = 0; i < json.length; i += chunkSize) {
+    const chunkSize = 25
+    for (let i = 0; i < json.length; i += chunkSize) {
         const chunk = json.slice(i, i + chunkSize)
-        const promises = chunk.map((ele) => processRecords(ele));
+        const promises = chunk.map((ele) => processRecords(ele))
         await Promise.all(promises)
     }
 
