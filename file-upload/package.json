@@ -1,0 +1,42 @@
+{
+  "name": "insured-mine-file-upload",
+  "version": "1.0.0",
+  "description": "",
+  "engines": {
+    "node": ">=12.0.0 <17.5.0"
+  },
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "start:dev": "nodemon app.js",
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "lint": "eslint app.js ./src && prettier --check app.js ./src",
+    "lint:fix": "eslint app.js ./src --fix && prettier --write app.js ./src"
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "dependencies": {
+    "csvtojson": "^2.0.10",
+    "dotenv": "9.0.0",
+    "express": "4.17.1",
+    "express-fileupload": "^1.4.0",
+    "joi": "17.4.0",
+    "mongoose": "6.1.6",
+    "morgan": "1.10.0",
+    "node-cache": "^5.1.2",
+    "node-schedule": "2.1.0",
+    "p-queue": "^7.2.0",
+    "piscina": "^3.2.0",
+    "winston": "3.3.3"
+  },
+  "devDependencies": {
+    "autocannon": "7.9.0",
+    "eslint": "8.6.0",
+    "eslint-config-airbnb-base": "14.0.0",
+    "eslint-config-prettier": "8.3.0",
+    "eslint-plugin-import": "2.20.1",
+    "nodemon": "2.0.7",
+    "prettier": "2.5.1"
+  }
+}
