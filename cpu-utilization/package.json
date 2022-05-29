@@ -1,0 +1,24 @@
+{
+  "name": "cpu-utilization",
+  "version": "1.0.0",
+  "description": "",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js",
+    "start:dev": "nodemon app.js",
+    "start:prod" : "pm2 start ecosystem.config.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "dependencies": {
+    "express": "4.18.1",
+    "node-cron": "3.0.0",
+    "pm2": "5.2.0"
+  },
+  "devDependencies": {
+    "nodemon": "2.0.16"
+  },
+
+  "keywords": [],
+  "author": "",
+  "license": "ISC"
+}
