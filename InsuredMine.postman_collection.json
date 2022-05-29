@@ -1,0 +1,95 @@
+{
+	"info": {
+		"_postman_id": "1484aba2-dbb7-41fd-ac51-3e7e53c448e6",
+		"name": "InsuredMine",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json"
+	},
+	"item": [
+		{
+			"name": "Save Message",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/message",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"message"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Upload File",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "formdata",
+					"formdata": [
+						{
+							"key": "csvfile",
+							"type": "file",
+							"src": "/Users/prateek/Downloads/data-sheet.csv"
+						}
+					]
+				},
+				"url": {
+					"raw": "localhost:3000/file",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"file"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Search User",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/search/user/Lura Lucca/policy",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"search",
+						"user",
+						"Lura Lucca",
+						"policy"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get policy",
+			"request": {
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "localhost:3000/search/policy",
+					"host": [
+						"localhost"
+					],
+					"port": "3000",
+					"path": [
+						"search",
+						"policy"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
