@@ -4,6 +4,7 @@ require('dotenv').config()
 const {
     Agent,
     User,
+    UserAccount,
     Policy,
     PolicyCarrier,
     PolicyCategory,
@@ -16,6 +17,7 @@ async function main() {
     await Promise.all([
         Agent.deleteMany(),
         User.deleteMany(),
+        UserAccount.deleteMany(),
         Policy.deleteMany(),
         PolicyCarrier.deleteMany(),
         PolicyCategory.deleteMany(),

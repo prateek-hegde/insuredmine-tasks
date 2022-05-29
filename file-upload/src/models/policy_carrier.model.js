@@ -8,7 +8,7 @@ const PolicyCarrierSchema = new Schema(
         companyName: {
             type: String,
             required: true,
-            unique: true
+            unique: true,
         },
     },
     { versionKey: false }

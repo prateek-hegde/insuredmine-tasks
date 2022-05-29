@@ -9,7 +9,7 @@ const {
     PolicyCarrier,
     Policy,
 } = require('../models')
-const { ErrorCodes, logger, getCache, setCache, CONST } = require('../utils')
+const { logger, getCache, setCache, CONST } = require('../utils')
 
 async function getCategoryId(categoryName) {
     let categories = await getCache(CONST.cacheKeys.Category)
@@ -36,6 +36,7 @@ async function getCompanyId(companyName) {
 }
 
 async function processRecords(data) {
+    const errors = []
     try {
         const user = await User.create({
             firstName: data.firstname,
@@ -53,23 +54,38 @@ async function processRecords(data) {
             getCompanyId(data.company_name),
         ])
 
-        await Policy.create({
-            policyNumber: data.policy_number,
-            policyStartDate: data.policy_start_date,
-            policyEndDate: data.policy_end_date,
-            policyCategory: categoryId,
-            policyCarrier: companyId,
-            user: user._id,
-        })
+        await Promise.all([
+            UserAccount.create({
+                accountName: data.account_name,
+                user: user._id,
+            }),
+            Policy.create({
+                policyNumber: data.policy_number,
+                policyStartDate: data.policy_start_date,
+                policyEndDate: data.policy_end_date,
+                policyCategory: categoryId,
+                policyCarrier: companyId,
+                user: user._id,
+            }),
+        ])
     } catch (error) {
-        console.log(error)
+        logger.error(
+            `error occured while processing the record ${error} | ${JSON.stringify(
+                error
+            )}`
+        )
+        errors.push(data)
     }
+
+    return errors
 }
 
 async function processFile() {
     const { json } = workerData
 
-    console.log('request received')
+    const errorRecords = []
+
+    logger.info('request received')
 
     await mongoose.connect(process.env.MONGO_CONNECION_STRING)
 
@@ -111,13 +127,13 @@ async function processFile() {
     for (let i = 0; i < json.length; i += chunkSize) {
         const chunk = json.slice(i, i + chunkSize)
         const promises = chunk.map((ele) => processRecords(ele))
-        await Promise.all(promises)
+        const errors = await Promise.all(promises)
+        if (errors.length) {
+            errorRecords.push(...errors)
+        }
     }
 
-    // return 'done';
-    parentPort.postMessage({ done: true })
+    parentPort.postMessage({ done: true, errorRecords })
 }
 
 processFile()
-
-// module.exports = {processFile}

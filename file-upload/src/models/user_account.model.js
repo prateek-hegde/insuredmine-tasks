@@ -7,9 +7,15 @@ const UserAccountSchema = new Schema(
     {
         accountName: {
             type: String,
+            required: false,
+        },
+        user: {
+            type: Schema.Types.ObjectId,
+            ref: CONST.models.User,
             required: true,
         },
     },
+
     { versionKey: false }
 )
 

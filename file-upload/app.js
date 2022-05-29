@@ -11,8 +11,6 @@ const app = express()
 app.use(express.json())
 app.use(express.urlencoded({ extended: true }))
 
-
-
 // log HTTP requests
 app.use(morgan('dev'))
 

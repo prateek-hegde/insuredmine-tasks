@@ -6,10 +6,10 @@ module.exports.CONST = {
         UserAccount: 'UserAccount',
         PolicyCategory: 'PolicyCategory',
         PolicyCarrier: 'PolicyCarrier',
-        Policy: 'Policy'
+        Policy: 'Policy',
     },
     cacheKeys: {
         Company: 'Company',
-        Category: 'Category'
-    }
+        Category: 'Category',
+    },
 }

@@ -8,7 +8,7 @@ const AgentSchema = new Schema(
         agentName: {
             type: String,
             required: true,
-            unique: true
+            unique: true,
         },
     },
     { versionKey: false }

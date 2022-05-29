@@ -36,7 +36,7 @@ module.exports.getPolicyByUser = async (req, res, next) => {
         const [totalRecors, data] = await Promise.all([
             Policy.aggregate([
                 {
-                    $group: {_id: "$user"},
+                    $group: { _id: '$user' },
                 },
             ]),
             Policy.aggregate([
